@@ -87,7 +87,7 @@ Breakdown:
         </div>
       ) : (
         <div className="empty-state">
-          <div className="empty-icon">
+          <div className="empty-icon flex justify-center">
             <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
               <rect
                 x="6"
