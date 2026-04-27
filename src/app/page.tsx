@@ -156,6 +156,7 @@ export default function Home() {
                 onDateSelect={handleDateSelect}
                 holidays={holidays}
                 employeeLeaves={employeeLeaves}
+                currentMonth={viewedDate}
                 onMonthChange={handleMonthChange}
               />
               <EmployeeLeaveList

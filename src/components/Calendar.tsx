@@ -23,7 +23,8 @@ interface CalendarProps {
   onDateSelect: (date: Date) => void;
   holidays: PublicHoliday[];
   employeeLeaves: EmployeeLeave[];
-  onMonthChange?: (date: Date) => void;
+  currentMonth: Date;
+  onMonthChange: (date: Date) => void;
 }
 
 export default function Calendar({
@@ -31,10 +32,10 @@ export default function Calendar({
   onDateSelect,
   holidays,
   employeeLeaves,
+  currentMonth,
   onMonthChange,
 }: CalendarProps) {
   const todayRef = useRef(new Date());
-  const [currentMonth, setCurrentMonth] = useState(() => new Date());
   const [hoveredDate, setHoveredDate] = useState<Date | null>(null);
   const [tooltip, setTooltip] = useState<{
     text: string;
@@ -48,8 +49,7 @@ export default function Calendar({
         direction === 'prev'
           ? subMonths(currentMonth, 1)
           : addMonths(currentMonth, 1);
-      setCurrentMonth(newMonth);
-      onMonthChange?.(newMonth);
+      onMonthChange(newMonth);
     },
     [currentMonth, onMonthChange]
   );
@@ -145,8 +145,7 @@ export default function Calendar({
           <button
             onClick={() => {
               const now = new Date();
-              setCurrentMonth(now);
-              onMonthChange?.(now);
+              onMonthChange(now);
             }}
             className="today-btn"
           >
